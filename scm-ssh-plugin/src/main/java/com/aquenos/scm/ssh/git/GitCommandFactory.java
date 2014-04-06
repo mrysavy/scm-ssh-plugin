@@ -36,9 +36,9 @@ import sonia.scm.repository.GitRepositoryHandler;
 import sonia.scm.repository.PermissionType;
 import sonia.scm.repository.PermissionUtil;
 import sonia.scm.repository.RepositoryManager;
+import sonia.scm.repository.spi.HookEventFacade;
 import sonia.scm.user.User;
 import sonia.scm.web.GitReceiveHook;
-import sonia.scm.web.GitReceivePackFactory;
 
 import com.aquenos.scm.ssh.server.AbstractCommand;
 import com.aquenos.scm.ssh.server.ScmSshServer;
@@ -64,21 +64,21 @@ public class GitCommandFactory implements CommandFactory {
 	 * 
 	 * @param repositoryHandler
 	 *            repository handler for Git repositories.
-	 * @param receivePackFactory
-	 *            factory for creating receive pack commands.
 	 * @param repositoryManager
 	 *            SCM repository manager.
 	 * @param configuration
 	 *            SCM configuration.
+	 * @param hookEventFacade
+	 *            Hook Event Facade.
 	 */
 	@Inject
 	public GitCommandFactory(GitRepositoryHandler repositoryHandler,
-			GitReceivePackFactory receivePackFactory,
-			RepositoryManager repositoryManager, ScmConfiguration configuration) {
+			RepositoryManager repositoryManager, ScmConfiguration configuration,
+            HookEventFacade hookEventFacade) {
 		this.repositoryHandler = repositoryHandler;
 		this.repositoryManager = repositoryManager;
 		this.configuration = configuration;
-		this.hook = new GitReceiveHook(repositoryManager, repositoryHandler);
+		this.hook = new GitReceiveHook(hookEventFacade, repositoryHandler);
 	}
 
 	@Override

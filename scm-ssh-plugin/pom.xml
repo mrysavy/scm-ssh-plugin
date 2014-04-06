@@ -7,13 +7,13 @@
   <parent>
     <artifactId>scm-plugins</artifactId>
     <groupId>sonia.scm.plugins</groupId>
-    <version>1.22</version>
+    <version>1.36</version>
   </parent>
 
   <groupId>com.aquenos.scm</groupId>
   <artifactId>scm-ssh-plugin</artifactId>
   <packaging>jar</packaging>
-  <version>1.1.0-SNAPSHOT</version>
+  <version>1.1.1-SNAPSHOT</version>
   <name>${project.artifactId}</name>
   <description>SSH support for SCM.</description>
   <url>http://oss.aquenos.com/scm/scm-ssh-plugin/</url>
